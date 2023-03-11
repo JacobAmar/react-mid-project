@@ -17,7 +17,7 @@ const Users = () => {
   
   return (
     <>
-    <Search/>
+    <Search users={users} setUsers={setUsers}/>
     <br/>
     {
         users.map( (item,index) => {

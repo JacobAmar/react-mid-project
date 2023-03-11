@@ -5,6 +5,7 @@ import { getFromDB } from '../utils/db'
 const User = ({user}) => {
   const [Todos, setTodos] = useState([])
   const [Border, setBorder] = useState(null)
+  const [ShowMoreData, setShowMoreData] = useState('none')
   
   useEffect(() => {
     const fetchTodos = async() => {
@@ -23,7 +24,6 @@ const User = ({user}) => {
     getTasksStatus()
   }, [Todos])
   
-
   return (
     <div style={{ border: Border }}>
         ID: {user.id}
@@ -31,6 +31,17 @@ const User = ({user}) => {
         Name: {user.name}
         <br/>
         Email: {user.email}
+        <br/>
+        <button onMouseOver={ () => setShowMoreData('block') } onMouseOut={ () => setShowMoreData('none') }>Other Data</button>
+        <div style={{ display: ShowMoreData }}>
+            Street: { user.address.street }
+            <br/>
+            City: {user.address.city}
+            <br/>
+            Zip Code: {user.address.zipcode}
+        </div>
+        <button>Update</button>
+        <button>Delete</button>
     </div>
   )
 }
